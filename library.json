@@ -1,0 +1,12 @@
+{
+    "id": "{28FE884B-88BF-CB89-E228-068D1E5E583A}",
+    "name": "Daikin EKHHE",
+    "author": "Kristian Lorbetzki",
+    "url": "",
+    "compatibility": {
+        "version": "8.0"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 20250204
+}

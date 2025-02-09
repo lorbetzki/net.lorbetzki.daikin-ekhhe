@@ -1,0 +1,15 @@
+{
+    "elements": [
+        { 
+            "type": "CheckBox", 
+            "name": "ShowParameter", 
+            "caption": "Show all parameters" 
+        }
+                    
+    ],
+    "actions": [
+
+
+    ],
+    "status": []
+}
