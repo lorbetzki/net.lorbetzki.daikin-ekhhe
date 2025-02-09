@@ -19,6 +19,7 @@
             "permanently deactivated":"dauerhaft deaktiviert",
             "activated with ECO":"aktiviert mit ECO",
             "activated with AUTO":"aktiviert mit AUTO",
+            "activated":"aktiviert",
             "working with DIG1":"Betrieb mit DIG1",
             "Direct control of thermal solar":"Direktsteuerung des Solarthermiksystems",
             "set temperature": "setze Temperatur",
@@ -69,8 +70,21 @@
             "(P51) Evaporator EC blower higher speed setpoint":"(P51) Verdampfer EC Gebläse Sollwert höhere Geschwindigkeit",
             "(P52) Evaporator EC blower lower speed setpoint":"(P52) Verdampfer EC Gebläse Sollwert untere Geschwindigkeit",
             "(P54) Low pressure switch bypass time":"(P54) Niederdruckschalter Bypass-Zeit",
-            "Show all parameters":"Alle Parameter anzeigen"
+            "Show all parameters":"Alle Parameter anzeigen",
+            "low pressure selection switch":"Niederdruckwahlschalter",
+            "AC with double speed":"AC mit doppelter Geschwindigkeit",
+            "EC with dynamic speed control":"EC mit dynamischer Geschwindigkeitssteuerung",
+            "lower":"unterer",
+            "upper":"oberer",
+            "always OFF":"immer aus",
+            "hot-water recirculation":"Warmwasser-Zirkulation",
+            "with heat-pump":"mit Wärmepumpe",
+            "always ON":"immer an",
+            "Thermal solar system":"Solarthermiksystem"
+
         }
     }
 }
+
+
 

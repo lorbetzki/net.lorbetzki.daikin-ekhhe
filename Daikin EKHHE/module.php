@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 			//$this->RequireParent('{3CFF0FD9-E306-41DB-9B5A-9D06D38576C3}');	
 			$this->RequireParent('{8062CF2B-600E-41D6-AD4B-1BA66C32D6ED}');
-			$this->RegisterPropertyBoolean('ShowParameter',false);
 			$this->createProfile();
 		}
 
@@ -62,14 +61,13 @@ declare(strict_types=1);
 			$Param = $HEX[0];
 
 			if (!@$DP[$Param]){return;}
+
 			foreach($DP[$Param] as $key => $value)
 			{	
 				$HexValue = $HEX[($value['HEXPos'])];
 				$ConvertValue = hexdec($HexValue);
 				$this->SendDebug(__FUNCTION__, 'reading Parameter '.$key." with HEX ".$HexValue." and converted value: ".$ConvertValue, 0);
 				
-				if ( (!$this->ReadPropertyBoolean('ShowParameter')) AND ($Param === "CC")){break;}
-
 				switch ($key)
 				{
 					case 'DIG': # Digital input, reversed bit
@@ -144,6 +142,7 @@ declare(strict_types=1);
 					}
 
 					$this->SendDebug(__FUNCTION__, 'write Ident '.$Param."_".$key."with value: ".$ConvertValue, 0);
+
 					$this->SetValue($Param."_".$key,$ConvertValue);
 				}
 			}
@@ -154,13 +153,65 @@ declare(strict_types=1);
 			if (!IPS_VariableProfileExists('EKHHE.Temp')) {
 				IPS_CreateVariableProfile('EKHHE.Temp', VARIABLETYPE_INTEGER);
 				IPS_SetVariableProfileIcon('EKHHE.Temp', 'Temperature');
-				IPS_SetVariableProfileValues("EKHHE.Temp", 0, 85, 1);
+				IPS_SetVariableProfileValues("EKHHE.Temp", -50, 85, 1);
 				IPS_SetVariableProfileText("EKHHE.Temp", "", " °C");
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",206,'-50', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",207,'-49', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",208,'-48', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",209,'-47', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",210,'-46', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",211,'-45', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",212,'-44', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",213,'-43', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",214,'-42', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",215,'-41', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",216,'-40', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",217,'-39', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",218,'-38', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",219,'-37', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",220,'-36', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",221,'-35', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",222,'-34', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",223,'-33', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",224,'-32', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",225,'-31', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",226,'-30', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",227,'-29', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",228,'-28', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",229,'-27', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",230,'-26', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",231,'-25', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",232,'-24', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",233,'-23', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",234,'-22', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",235,'-21', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",236,'-20', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",237,'-19', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",238,'-18', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",239,'-17', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",240,'-16', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",241,'-15', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",242,'-14', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",243,'-13', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",244,'-12', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",245,'-11', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",246,'-10', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",247,'-9', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",248,'-8', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",249,'-7', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",250,'-6', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",251,'-5', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",252,'-4', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",253,'-3', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",254,'-2', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",255,'-1', "", 0xFFFFFFFF);
+				
+
 			}
 			if (!IPS_VariableProfileExists('EKHHE.SetTemp')) {
 				IPS_CreateVariableProfile('EKHHE.SetTemp', VARIABLETYPE_INTEGER);
 				IPS_SetVariableProfileIcon('EKHHE.SetTemp', 'Temperature');
-				IPS_SetVariableProfileValues("EKHHE.SetTemp", 0, 65, 1);
+				IPS_SetVariableProfileValues("EKHHE.SetTemp", 40, 65, 1);
 				IPS_SetVariableProfileText("EKHHE.SetTemp", "", " °C");
 			}
 			if (!IPS_VariableProfileExists('EKHHE.Mode')) {
@@ -175,33 +226,70 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation('EKHHE.Mode', 4, $this->Translate('fan'), '', 0x00);
 				IPS_SetVariableProfileAssociation('EKHHE.Mode', 5, $this->Translate('holiday'), '', 0xFF00FF);
 			}
+
 			if (!IPS_VariableProfileExists('EKHHE.Duration')) {
 				IPS_CreateVariableProfile('EKHHE.Duration', VARIABLETYPE_INTEGER);
 				IPS_SetVariableProfileIcon('EKHHE.Duration', 'clock');
 				IPS_SetVariableProfileValues("EKHHE.Duration", 0, 90, 1);
-				IPS_SetVariableProfileText("EKHHE.Duration", "", "");
-			}
-			if (!IPS_VariableProfileExists('EKHHE.P1')) {
-				IPS_CreateVariableProfile('EKHHE.P1', VARIABLETYPE_INTEGER);
-				IPS_SetVariableProfileIcon('EKHHE.P1', 'Temperature');
-				IPS_SetVariableProfileValues("EKHHE.P1", 2, 15, 1);
-				IPS_SetVariableProfileText("EKHHE.P1", "", " °C");
-			}
-			if (!IPS_VariableProfileExists('EKHHE.P3')) {
-				IPS_CreateVariableProfile('EKHHE.P3', VARIABLETYPE_INTEGER);
-				IPS_SetVariableProfileIcon('EKHHE.P3', 'Temperature');
-				IPS_SetVariableProfileValues("EKHHE.P3", 50, 75, 1);
-				IPS_SetVariableProfileText("EKHHE.P3", "", " °C");
+				IPS_SetVariableProfileText("EKHHE.Duration", "", " Min.");
 			}
 
-			if (!IPS_VariableProfileExists('EKHHE.P24')) {
-				IPS_CreateVariableProfile('EKHHE.P24', VARIABLETYPE_INTEGER);
-				IPS_SetVariableProfileIcon('EKHHE.P24', '');
-				IPS_SetVariableProfileValues("EKHHE.P24", 0, 2, 1);
-				IPS_SetVariableProfileText("EKHHE.P24", "", "");
-				IPS_SetVariableProfileAssociation('EKHHE.P24', 0, $this->Translate('permanently deactivated'), '', 0xFFFFFFFF);
-				IPS_SetVariableProfileAssociation('EKHHE.P24', 1, $this->Translate('activated with ECO'), '', 0x00FF00);
-				IPS_SetVariableProfileAssociation('EKHHE.P24', 2, $this->Translate('activated with AUTO'), '', 0xFFFF00);
+			if (!IPS_VariableProfileExists('EKHHE.DurationS')) {
+				IPS_CreateVariableProfile('EKHHE.DurationS', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.DurationS', 'clock');
+				IPS_SetVariableProfileValues("EKHHE.DurationS", 0, 90, 1);
+				IPS_SetVariableProfileText("EKHHE.DurationS", "", " sek.");
+			}
+
+			if (!IPS_VariableProfileExists('EKHHE.DurationH')) {
+				IPS_CreateVariableProfile('EKHHE.DurationH', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.DurationH', 'clock');
+				IPS_SetVariableProfileValues("EKHHE.DurationH", 0, 24, 1);
+				IPS_SetVariableProfileText("EKHHE.DurationH", "", " Std.");
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P11')) {
+				IPS_CreateVariableProfile('EKHHE.P11', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P11', '');
+				IPS_SetVariableProfileValues("EKHHE.P11", 0, 1, 1);
+				IPS_SetVariableProfileText("EKHHE.P11", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P11', 0, $this->Translate('lower'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P11', 1, $this->Translate('upper'), '', 0x00FF00);
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P12')) {
+				IPS_CreateVariableProfile('EKHHE.P12', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P12', '');
+				IPS_SetVariableProfileValues("EKHHE.P12", 0, 2, 1);
+				IPS_SetVariableProfileText("EKHHE.P12", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P12', 0, $this->Translate('always OFF'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P12', 1, $this->Translate('hot-water recirculation'), '', 0x00FF00);
+				IPS_SetVariableProfileAssociation('EKHHE.P12', 2, $this->Translate('Thermal solar system'), '', 0x00FF00);
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P13')) {
+				IPS_CreateVariableProfile('EKHHE.P13', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P13', '');
+				IPS_SetVariableProfileValues("EKHHE.P13", 0, 1, 1);
+				IPS_SetVariableProfileText("EKHHE.P13", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P13', 0, $this->Translate('with heat-pump'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P13', 1, $this->Translate('always ON'), '', 0x00FF00);
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P14')) {
+				IPS_CreateVariableProfile('EKHHE.P14', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P14', '');
+				IPS_SetVariableProfileValues("EKHHE.P14", 0, 3, 1);
+				IPS_SetVariableProfileText("EKHHE.P14", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P14', 0, $this->Translate('EC'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P14', 1, $this->Translate('AC'), '', 0x00FF00);
+				IPS_SetVariableProfileAssociation('EKHHE.P14', 2, $this->Translate('AC with double speed'), '', 0x00FF00);
+				IPS_SetVariableProfileAssociation('EKHHE.P14', 3, $this->Translate('EC with dynamic speed control'), '', 0x00FF00);
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P15')) {
+				IPS_CreateVariableProfile('EKHHE.P15', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P15', '');
+				IPS_SetVariableProfileValues("EKHHE.P15", 0, 3, 1);
+				IPS_SetVariableProfileText("EKHHE.P15", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P15', 0, $this->Translate('NC'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P15', 1, $this->Translate('NO'), '', 0x00FF00);
+				IPS_SetVariableProfileAssociation('EKHHE.P15', 2, $this->Translate('low pressure selection switch'), '', 0x00FF00);
 			}
 			if (!IPS_VariableProfileExists('EKHHE.P16')) {
 				IPS_CreateVariableProfile('EKHHE.P16', VARIABLETYPE_INTEGER);
@@ -212,6 +300,15 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation('EKHHE.P16', 1, $this->Translate('working with DIG1'), '', 0x00FF00);
 				IPS_SetVariableProfileAssociation('EKHHE.P16', 2, $this->Translate('Direct control of thermal solar'), '', 0x00FF00);
 			}
+			if (!IPS_VariableProfileExists('EKHHE.P24')) {
+				IPS_CreateVariableProfile('EKHHE.P24', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P24', '');
+				IPS_SetVariableProfileValues("EKHHE.P24", 0, 2, 1);
+				IPS_SetVariableProfileText("EKHHE.P24", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P24', 0, $this->Translate('permanently deactivated'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P24', 1, $this->Translate('activated with ECO'), '', 0x00FF00);
+				IPS_SetVariableProfileAssociation('EKHHE.P24', 2, $this->Translate('activated with AUTO'), '', 0xFFFF00);
+			}			
 			if (!IPS_VariableProfileExists('EKHHE.P23')) {
 				IPS_CreateVariableProfile('EKHHE.P23', VARIABLETYPE_INTEGER);
 				IPS_SetVariableProfileIcon('EKHHE.P23', '');
@@ -220,7 +317,6 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation('EKHHE.P23', 0, $this->Translate('permanently deactivated'), '', 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation('EKHHE.P23', 1, $this->Translate('activated'), '', 0x00FF00);
 			}
-
 		}
 
 		public function RequestAction($Ident, $Value)
@@ -231,28 +327,36 @@ declare(strict_types=1);
 			$IdentPart = explode("_",$Ident);
 
 			switch ($Ident) {
-				case "CC_SetTemp":
+				case 'CC_SetTemp':
 					$this->SetValue($Ident, $Value);
 					$Prep = $this->prepareSend($DP[($IdentPart[0])][($IdentPart[1])]['HEXPos'],$Value);
-					// Backupeinstellung
+					// just my backup. Note: we can create a backup and restore function..
 					//$Prep = "cd0115001e3c0a0007111efb0332323737323e3e070441070202000000030001010a280a8c3e4b1e0f09195804ff00000202010000000000000f27202bf9190c5a321400017fc0";
-					$TELEGRAM = pack("H*",$Prep);
 					
-				//echo $TELEGRAM;
-				IPS_LogMessage('Daikin EKHHE IDENT:',$Ident);
-
-				IPS_LogMessage('Daikin EKHHE:',$Prep);
-					//$this->SendData($TELEGRAM);
+				break;
+				case 'CC_Power':
+					if($Value){$Value = 1;}else{$Value = 0;}
+					$this->SetValue($Ident, $Value);
+					$Prep = $this->prepareSend($DP[($IdentPart[0])][($IdentPart[1])]['HEXPos'],$Value);
+				break;
+				case 'CC_Mode':
+					$this->SetValue($Ident, $Value);
+					$Prep = $this->prepareSend($DP[($IdentPart[0])][($IdentPart[1])]['HEXPos'],$Value);
 				break;
 				
 			}
+			$TELEGRAM = pack("H*",$Prep);
+			IPS_LogMessage('Daikin EKHHE IDENT:',$Ident);
+			IPS_LogMessage('Daikin EKHHE:',$Prep);
+			//$this->SendData($TELEGRAM);
 		}
 
 		private function prepareSend($parameter, $value)
 		{
 			$this->SendDebug(__FUNCTION__, "prepare Data to write: ". $value, 0);
-			$value = dechex($value);
-			// we have the Paramter without the starthex, thats why we go 2 bytes back
+			$value = str_pad((dechex($value)),2,"0", STR_PAD_LEFT);
+
+			// we have the Paramter without the starthex, thats why we go 1 array back
 			$ParArray = $parameter-1;
 			// read the buffer
 			$lastParam = $this->GetBuffer('lastConfigParameter');
@@ -274,10 +378,8 @@ declare(strict_types=1);
 
 			}
 			$HexStart = "CD";
-			$HexParam = $NewParam;
-			$HexEnd = "FF00000202010000000000000E39202BF9190C5A321400017F";
-			$Checksum = $this->CalculateChecksum($HexStart.$HexParam.$HexEnd);
-			return $HexStart.$HexParam.$HexEnd.$Checksum;
+			$Checksum = $this->CalculateChecksum($HexStart.$NewParam);
+			return $HexStart.$NewParam.$Checksum;
 		}
 
 		private function CalculateChecksum(string $hex)
@@ -368,8 +470,8 @@ declare(strict_types=1);
 			{
 				if ($GivenHex == 'CC')
 				{
-					// write CC Parameter to an extra Buffer
-					$Param = substr($RAWDATA, 2, 88);
+					// write CC Parameter to an extra Buffer, without CC and without checksum
+					$Param = substr($RAWDATA, 2, 138);
 					$this->SendDebug(__FUNCTION__, 'write some CC Parameter to an extra buffer. '.$Param, 0);
 					$this->SetBuffer('lastConfigParameter',$Param);
 				}
