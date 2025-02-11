@@ -10,7 +10,7 @@ $DP = [
             'F' =>      [ 'Desc' => $this->Translate("(F) Evaporator outlet gas temperature probe"), 'HEXPos'=> 12, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
             'G' =>      [ 'Desc' => $this->Translate("(G) Compressor discharge gas temperature probe"), 'HEXPos'=> 13, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
             'H' =>      [ 'Desc' => $this->Translate("(H) Solar collector temperature probe (PT1000)"), 'HEXPos'=> 14, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
-            'DIG' =>    [ 'Desc' => $this->Translate("Digi"), 'HEXPos'=> 21, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 0, 'isVar' => false, 'Action' => false ]
+            'DIG' =>    [ 'Desc' => $this->Translate("Dummy Digital"), 'HEXPos'=> 21, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 0, 'isVar' => false, 'Action' => false ],
             ],
     'CC' => [
             
@@ -67,8 +67,15 @@ $DP = [
             'P52'     =>    [ 'Desc' => $this->Translate("(P52) Evaporator EC blower lower speed setpoint"), 'HEXPos'=> 65, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "~Valve", 'Pos' => 152, 'isVar' => true, 'Action' => false ],
             'P54'     =>    [ 'Desc' => $this->Translate("(P54) Low pressure switch bypass time"), 'HEXPos'=> 69, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 154, 'isVar' => true, 'Action' => false ],
 
+            'P11'     =>    [ 'Desc' => $this->Translate("(P11) Water temperature probe value shown on the display"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P11", 'Pos' => 111, 'isVar' => true, 'Action' => false ],
+            'P15'     =>    [ 'Desc' => $this->Translate("(P15) Type of safety flow switch for hot / solar water recirculation circuit, low pressure selection switch"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P15", 'Pos' => 115, 'isVar' => true, 'Action' => false ],
+            'P5'      =>    [ 'Desc' => $this->Translate("(P5) Defrosting mode"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P5", 'Pos' => 105, 'isVar' => true, 'Action' => false ],
+            'P6'      =>    [ 'Desc' => $this->Translate("(P6) Electrical heater usage during defrosting"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P6", 'Pos' => 106, 'isVar' => true, 'Action' => false ],
+            'P33'     =>    [ 'Desc' => $this->Translate("(P33) Electronic-expansion valve (EEV) control"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P23", 'Pos' => 133, 'isVar' => true, 'Action' => false ],
+
+            'P13'     =>    [ 'Desc' => $this->Translate("(P13) Hot-water recirculation pump working mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P13", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
+            'P39'     =>    [ 'Desc' => $this->Translate("(P39) EEV control mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P39", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
 
             ]
     ];
-    
     

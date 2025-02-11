@@ -67,84 +67,72 @@ declare(strict_types=1);
 				$HexValue = $HEX[($value['HEXPos'])];
 				$ConvertValue = hexdec($HexValue);
 				$this->SendDebug(__FUNCTION__, 'reading Parameter '.$key." with HEX ".$HexValue." and converted value: ".$ConvertValue, 0);
-				
+
 				switch ($key)
 				{
 					case 'DIG': # Digital input, reversed bit
-					if ((!@$this->GetIDForIdent($Param."_DIG1")) OR (!@$this->GetIDForIdent($Param."_DIG2")) OR (!@$this->GetIDForIdent($Param."_DIG3")))
+					
+					// we have 3 Digital input but only one Hex value, moreover we have 3 Parameter for each input
+					// if Parameter P16 is set, we can show DIG1 status.. For P23 Digi 2 and so on
+
+					$DIGArr=['DIG1'=>'P16', 'DIG2'=>'P23', 'DIG3'=>'P24'];
+					// HEX[21] is the value for DIGITAL Input
+
+					if (!(hexdec($HEX[21]) & 1 << 0) >0){$DIG1 = true;}else{$DIG1 = false;}
+					if (!(hexdec($HEX[21]) & 1 << 1) >0){$DIG2 = true;}else{$DIG2 = false;}
+					if (!(hexdec($HEX[21]) & 1 << 2) >0){$DIG3 = true;}else{$DIG3 = false;}
+
+					foreach($DIGArr as $DIG=>$PAR)
 					{
-						$this->MaintainVariable($Param."_DIG1",$this->Translate("Digital 1"), VARIABLETYPE_BOOLEAN, '~Switch',0,true);
-						$this->MaintainVariable($Param."_DIG2",$this->Translate("Digital 2"), VARIABLETYPE_BOOLEAN, '~Switch',0,true);
-						$this->MaintainVariable($Param."_DIG3",$this->Translate("Digital 3"), VARIABLETYPE_BOOLEAN, '~Switch',0,true);
-					}
-
-						switch($ConvertValue)
+						if  ((@$this->GetIDForIdent('CC_'.$PAR)) AND ($this->GetValue("CC_".$PAR)>0))
 						{
-							case 7:
-								$this->SetValue($Param."_DIG1",false); # 1
-								$this->SetValue($Param."_DIG2",false); # 1
-								$this->SetValue($Param."_DIG3",false); # 1
-							break;
-							
-							case 6:
-								$this->SetValue($Param."_DIG1",true);  # 0
-								$this->SetValue($Param."_DIG2",false); # 1
-								$this->SetValue($Param."_DIG3",false); # 1	
-							break;
-							
-							case 5:
-								$this->SetValue($Param."_DIG1",false); # 1
-								$this->SetValue($Param."_DIG2",true);  # 0
-								$this->SetValue($Param."_DIG3",false); # 1
-							break;
-
-							case 4:
-								$this->SetValue($Param."_DIG1",true);  # 0 
-								$this->SetValue($Param."_DIG2",true);  # 0
-								$this->SetValue($Param."_DIG3",false); # 1
-							break;
-
-							case 3:
-								$this->SetValue($Param."_DIG1",false); # 1
-								$this->SetValue($Param."_DIG2",false); # 1
-								$this->SetValue($Param."_DIG3",true);  # 0
-							break;
-							
-							case 2:
-								$this->SetValue($Param."_DIG1",true);  # 0
-								$this->SetValue($Param."_DIG2",false); # 1
-								$this->SetValue($Param."_DIG3",true);  # 0
-							break;
-						
-							case 1:	
-								$this->SetValue($Param."_DIG1",false); # 1
-								$this->SetValue($Param."_DIG2",true);  # 0
-								$this->SetValue($Param."_DIG3",true);  # 0
-							break;
-							
-							case 0:
-								$this->SetValue($Param."_DIG1",true);  # 0
-								$this->SetValue($Param."_DIG2",true);  # 0
-								$this->SetValue($Param."_DIG3",true);  # 0
-							break;
+							$this->MaintainVariable($Param."_".$DIG,$this->Translate("$DIG"), VARIABLETYPE_BOOLEAN, '~Switch',0,true);
+						}	
+						else
+						{
+							$this->MaintainVariable($Param."_".$DIG,$this->Translate("DIG"), VARIABLETYPE_BOOLEAN, '~Switch',0,false);
 						}
+					}
+					if($this->GetValue("CC_".$PAR)>0){$this->SetValue($Param."_DIG1",$DIG1);}
+					if($this->GetValue("CC_".$PAR)>0){$this->SetValue($Param."_DIG2",$DIG2);} 
+					if($this->GetValue("CC_".$PAR)>0){$this->SetValue($Param."_DIG3",$DIG3);}
+
+					break;
+
+					case 'P11':
+						if ((hexdec($HEX[2]) & 1 << 0) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
+					break;
+					case 'P15':
+						if ((hexdec($HEX[2]) & 1 << 1) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
+					break;
+					case 'P5':
+						if ((hexdec($HEX[2]) & 1 << 2) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
+					break;
+					case 'P6':
+						if ((hexdec($HEX[2]) & 1 << 3) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
+					break;
+					case 'P33':
+						if ((hexdec($HEX[2]) & 1 << 4) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
+					break;
+					case 'P13':
+						if ((hexdec($HEX[1]) & 1 << 5) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
+					break;
+					case 'P39':
+						if ((hexdec($HEX[1]) & 1 << 2) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
 					break;
 					default:
-					
-					if((!@$this->GetIDForIdent($Param."_".$key)) AND $value['isVar'])
-					{
-						$this->MaintainVariable($Param."_".$key,$value['Desc'], $value['Type'], $value['Profile'], $value['Pos'],true);
-
-						if($value['Action'])
-						{
-							$this->EnableAction($Param."_".$key);
-						}
-					}
-
-					$this->SendDebug(__FUNCTION__, 'write Ident '.$Param."_".$key."with value: ".$ConvertValue, 0);
-
-					$this->SetValue($Param."_".$key,$ConvertValue);
 				}
+				if ($Param."_".$key == 'DD_DIG'){break;}
+				if((!@$this->GetIDForIdent($Param."_".$key)) AND $value['isVar'])
+				{
+					$this->MaintainVariable($Param."_".$key,$value['Desc'], $value['Type'], $value['Profile'], $value['Pos'],true);
+					if($value['Action'])
+					{
+						$this->EnableAction($Param."_".$key);
+					}
+				}
+				$this->SendDebug(__FUNCTION__, 'write Ident '.$Param."_".$key." with value: ".$ConvertValue, 0);
+				$this->SetValue($Param."_".$key,$ConvertValue);
 			}
 		}
 					
@@ -272,6 +260,14 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation('EKHHE.P13', 0, $this->Translate('with heat-pump'), '', 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation('EKHHE.P13', 1, $this->Translate('always ON'), '', 0x00FF00);
 			}
+			if (!IPS_VariableProfileExists('EKHHE.P39')) {
+				IPS_CreateVariableProfile('EKHHE.P39', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P39', '');
+				IPS_SetVariableProfileValues("EKHHE.P39", 0, 1, 1);
+				IPS_SetVariableProfileText("EKHHE.P39", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P39', 0, $this->Translate('automatic'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P39', 1, $this->Translate('manual'), '', 0x00FF00);
+			}
 			if (!IPS_VariableProfileExists('EKHHE.P14')) {
 				IPS_CreateVariableProfile('EKHHE.P14', VARIABLETYPE_INTEGER);
 				IPS_SetVariableProfileIcon('EKHHE.P14', '');
@@ -316,6 +312,22 @@ declare(strict_types=1);
 				IPS_SetVariableProfileText("EKHHE.P23", "", "");
 				IPS_SetVariableProfileAssociation('EKHHE.P23', 0, $this->Translate('permanently deactivated'), '', 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation('EKHHE.P23', 1, $this->Translate('activated'), '', 0x00FF00);
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P5')) {
+				IPS_CreateVariableProfile('EKHHE.P5', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P5', '');
+				IPS_SetVariableProfileValues("EKHHE.P5", 0, 1, 1);
+				IPS_SetVariableProfileText("EKHHE.P5", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P5', 0, $this->Translate('compressor stop'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P5', 1, $this->Translate('hot-gas'), '', 0xFF0000);
+			}
+			if (!IPS_VariableProfileExists('EKHHE.P6')) {
+				IPS_CreateVariableProfile('EKHHE.P6', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.P6', '');
+				IPS_SetVariableProfileValues("EKHHE.P6", 0, 1, 1);
+				IPS_SetVariableProfileText("EKHHE.P6", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.P6', 0, $this->Translate('OFF'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.P6', 1, $this->Translate('ON'), '', 0xFF0000);
 			}
 		}
 

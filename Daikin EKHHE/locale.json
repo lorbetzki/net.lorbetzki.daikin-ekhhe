@@ -80,11 +80,20 @@
             "hot-water recirculation":"Warmwasser-Zirkulation",
             "with heat-pump":"mit Wärmepumpe",
             "always ON":"immer an",
-            "Thermal solar system":"Solarthermiksystem"
-
+            "Thermal solar system":"Solarthermiksystem",
+            "(P11) Water temperature probe value shown on the display":"(P11) Im Display angezeigter Wassertemperatur-Sondenwert",
+            "(P15) Type of safety flow switch for hot / solar water recirculation circuit, low pressure selection switch":"(P15) Art des Sicherheits-Flussschalters für Warm-/Solar-Wasserumwälzkreislauf, Niederdruckwahlschalter",
+            "(P5) Defrosting mode":"(P5) Entfrosten-Modus",
+            "(P6) Electrical heater usage during defrosting":"(P6) Nutzung elektrisches Heizelement während Entfrosten",
+            "(P33) Electronic-expansion valve (EEV) control":"(P33) Steuerung elektronisches Expansionsventil (EEV)",
+            "compressor stop":"Verdichter-Stopp",
+            "hot-gas":"Heißgas",
+            "OFF":"Aus",
+            "ON":"An",
+            "(P13) Hot-water recirculation pump working mode":"(P13) Betriebsmodus Warmwasser-Umwälzpumpe",
+            "(P39) EEV control mode":"(P39 EEV-Steuerungsmodus",
+            "automatic":"automatisch",
+            "manual":"manuell"
         }
     }
 }
-
-
-
