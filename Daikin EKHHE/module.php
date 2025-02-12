@@ -120,6 +120,7 @@ declare(strict_types=1);
 					case 'P39':
 						if ((hexdec($HEX[1]) & 1 << 2) >0){$ConvertValue = 1;}else{$ConvertValue = 0;}
 					break;
+					
 					default:
 				}
 				if ($Param."_".$key == 'DD_DIG'){break;}
@@ -134,6 +135,7 @@ declare(strict_types=1);
 				$this->SendDebug(__FUNCTION__, 'write Ident '.$Param."_".$key." with value: ".$ConvertValue, 0);
 				$this->SetValue($Param."_".$key,$ConvertValue);
 			}
+			$this->ChangeModeProfile();
 		}
 					
 		private function createProfile()
@@ -193,8 +195,6 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation("EKHHE.Temp",253,'-3', "", 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation("EKHHE.Temp",254,'-2', "", 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation("EKHHE.Temp",255,'-1', "", 0xFFFFFFFF);
-				
-
 			}
 			if (!IPS_VariableProfileExists('EKHHE.SetTemp')) {
 				IPS_CreateVariableProfile('EKHHE.SetTemp', VARIABLETYPE_INTEGER);
@@ -211,7 +211,7 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation('EKHHE.Mode', 1, $this->Translate('eco'), '', 0x00FF00);
 				IPS_SetVariableProfileAssociation('EKHHE.Mode', 2, $this->Translate('boost'), '', 0x000000);
 				IPS_SetVariableProfileAssociation('EKHHE.Mode', 3, $this->Translate('electric'), '', 0x0000FF);
-				IPS_SetVariableProfileAssociation('EKHHE.Mode', 4, $this->Translate('fan'), '', 0x00);
+				IPS_SetVariableProfileAssociation('EKHHE.Mode', 4, $this->Translate('fan'), '', 0x000000);
 				IPS_SetVariableProfileAssociation('EKHHE.Mode', 5, $this->Translate('holiday'), '', 0xFF00FF);
 			}
 
@@ -337,6 +337,7 @@ declare(strict_types=1);
 
 			$this->SendDebug(__FUNCTION__, "starting action: ". $Ident . " with value ".$Value, 0);
 			$IdentPart = explode("_",$Ident);
+			$Prep = false;
 
 			switch ($Ident) {
 				case 'CC_SetTemp':
@@ -344,7 +345,6 @@ declare(strict_types=1);
 					$Prep = $this->prepareSend($DP[($IdentPart[0])][($IdentPart[1])]['HEXPos'],$Value);
 					// just my backup. Note: we can create a backup and restore function..
 					//$Prep = "cd0115001e3c0a0007111efb0332323737323e3e070441070202000000030001010a280a8c3e4b1e0f09195804ff00000202010000000000000f27202bf9190c5a321400017fc0";
-					
 				break;
 				case 'CC_Power':
 					if($Value){$Value = 1;}else{$Value = 0;}
@@ -357,10 +357,11 @@ declare(strict_types=1);
 				break;
 				
 			}
-			$TELEGRAM = pack("H*",$Prep);
-			IPS_LogMessage('Daikin EKHHE IDENT:',$Ident);
-			IPS_LogMessage('Daikin EKHHE:',$Prep);
-			//$this->SendData($TELEGRAM);
+			if ($Prep)
+			{
+				$TELEGRAM = pack("H*",$Prep);
+				$this->SendData($TELEGRAM);
+			}
 		}
 
 		private function prepareSend($parameter, $value)
@@ -497,5 +498,38 @@ declare(strict_types=1);
 				$this->SetBuffer('Buffer',$RAWDATA);
 				$this->SendDebug(__FUNCTION__, 'data not complete, collect more '.json_encode($RAWDATA), 0);
 			}
-		}		
+		}	
+
+		private function ChangeModeProfile()
+		{
+			$ProfileAcc = IPS_GetVariableProfile('EKHHE.Mode');
+
+			// delete ProfileAssociation if some Parameter are active because some modes are not available...
+			if (IPS_VariableProfileExists('EKHHE.Mode'))
+			{
+				if( ($this->GetValue('CC_P16')>0) OR ($this->GetValue('CC_P23')>0) OR ($this->GetValue('CC_P24')>0) )
+				{
+					foreach($ProfileAcc['Associations'] as $key=>$val)
+					{
+						if($val['Value'] == 2){IPS_SetVariableProfileAssociation('EKHHE.Mode', 2, '', '', -1);}
+						if($val['Value'] == 3){IPS_SetVariableProfileAssociation('EKHHE.Mode', 3, '', '', -1);}
+						if($val['Value'] == 4){IPS_SetVariableProfileAssociation('EKHHE.Mode', 4, '', '', -1);}
+						if(($this->GetValue('CC_P24')>0) AND ($val['Value'] = 5)){IPS_SetVariableProfileAssociation('EKHHE.Mode', 5, '', '', -1);}
+					}	
+				}
+				
+					if ( ($this->GetValue('CC_P16') == 0 ) AND ($this->GetValue('CC_P23') == 0 ) AND ($this->GetValue('CC_P24') == 0 ))
+					{		
+						IPS_SetVariableProfileAssociation('EKHHE.Mode', 2, $this->Translate('boost'), '', 0x000000);
+						IPS_SetVariableProfileAssociation('EKHHE.Mode', 3, $this->Translate('electric'), '', 0x0000FF);
+						IPS_SetVariableProfileAssociation('EKHHE.Mode', 4, $this->Translate('fan'), '', 0x000000);
+						IPS_SetVariableProfileAssociation('EKHHE.Mode', 5, $this->Translate('holiday'), '', 0xFF00FF);
+					}
+					if((($this->GetValue('CC_P16')>0) OR ($this->GetValue('CC_P23')>0)) AND ($this->GetValue('CC_P24')==0))
+					{
+						IPS_SetVariableProfileAssociation('EKHHE.Mode', 5, $this->Translate('holiday'), '', 0xFF00FF);
+					}
+				
+			}
+		}	
 }

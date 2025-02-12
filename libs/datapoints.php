@@ -73,8 +73,8 @@ $DP = [
             'P6'      =>    [ 'Desc' => $this->Translate("(P6) Electrical heater usage during defrosting"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P6", 'Pos' => 106, 'isVar' => true, 'Action' => false ],
             'P33'     =>    [ 'Desc' => $this->Translate("(P33) Electronic-expansion valve (EEV) control"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P23", 'Pos' => 133, 'isVar' => true, 'Action' => false ],
 
-            'P13'     =>    [ 'Desc' => $this->Translate("(P13) Hot-water recirculation pump working mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P13", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
-            'P39'     =>    [ 'Desc' => $this->Translate("(P39) EEV control mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P39", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
+            'P13'     =>    [ 'Desc' => $this->Translate("(P13) Hot-water recirculation pump working mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P13", 'Pos' => 113, 'isVar' => true, 'Action' => false ],
+            'P39'     =>    [ 'Desc' => $this->Translate("(P39) EEV control mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P39", 'Pos' => 139, 'isVar' => true, 'Action' => false ],
 
             ]
     ];

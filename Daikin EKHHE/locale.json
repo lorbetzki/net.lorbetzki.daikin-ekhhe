@@ -93,7 +93,8 @@
             "(P13) Hot-water recirculation pump working mode":"(P13) Betriebsmodus Warmwasser-Umwälzpumpe",
             "(P39) EEV control mode":"(P39 EEV-Steuerungsmodus",
             "automatic":"automatisch",
-            "manual":"manuell"
+            "manual":"manuell",
+            "MODE: to set this function is not allowd because (P16), (P23) or (P24) is enabled. Please take a look into the Manual":"MODE: es ist nicht erlaubt diese Funktion zu nutzen, da (P16), (P23) oder (P24) aktiviert ist. Bitte konsultieren sie das Handbuch."
         }
     }
 }
