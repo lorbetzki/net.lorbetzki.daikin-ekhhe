@@ -6,6 +6,9 @@ das Modul erlaubt es folgende Daikin Brauchwasserpumpen der Firma Daikin in Symc
 - EKHHE260CV37
 - EKHHE260PCV37
 
+*** ACHTUNG ***
+dieses Modul habe ich durch aufwendiges reverse Engineering zusammengestellt. Es ist zwar getestet, dennoch übernehme ich keine Haftung für Schäden, Fehler oder andere Probleme. Bei Unsicherheit, nutz das Modul einfach nicht.
+
 ### Inhaltsverzeichnis
 
 1. [Funktionsumfang](#1-funktionsumfang)
