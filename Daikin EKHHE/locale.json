@@ -94,7 +94,12 @@
             "(P39) EEV control mode":"(P39 EEV-Steuerungsmodus",
             "automatic":"automatisch",
             "manual":"manuell",
-            "MODE: to set this function is not allowd because (P16), (P23) or (P24) is enabled. Please take a look into the Manual":"MODE: es ist nicht erlaubt diese Funktion zu nutzen, da (P16), (P23) oder (P24) aktiviert ist. Bitte konsultieren sie das Handbuch."
+            "MODE: to set this function is not allowd because (P16), (P23) or (P24) is enabled. Please take a look into the Manual":"MODE: es ist nicht erlaubt diese Funktion zu nutzen, da (P16), (P23) oder (P24) aktiviert ist. Bitte konsultieren sie das Handbuch.",
+            "(Timer) enabled":"(Timer) aktiv",
+            "(Timer) start hour":"(Timer) start in Std.",
+            "(Timer) start minute":"(Timer) Start in Min.",
+            "(Timer) stop hour":"(Timer) stop in Std.",
+            "(Timer) stop minute":"(Timer) stop in Min."
         }
     }
 }

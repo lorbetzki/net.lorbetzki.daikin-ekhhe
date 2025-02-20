@@ -65,7 +65,7 @@ $DP = [
             'P50'     =>    [ 'Desc' => $this->Translate("(P50) Antifreeze lower water temperature setpoint"), 'HEXPos'=> 63, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 150, 'isVar' => true, 'Action' => false ],
             'P51'     =>    [ 'Desc' => $this->Translate("(P51) Evaporator EC blower higher speed setpoint"), 'HEXPos'=> 64, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "~Valve", 'Pos' => 151, 'isVar' => true, 'Action' => false ],
             'P52'     =>    [ 'Desc' => $this->Translate("(P52) Evaporator EC blower lower speed setpoint"), 'HEXPos'=> 65, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "~Valve", 'Pos' => 152, 'isVar' => true, 'Action' => false ],
-            'P54'     =>    [ 'Desc' => $this->Translate("(P54) Low pressure switch bypass time"), 'HEXPos'=> 69, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 154, 'isVar' => true, 'Action' => false ],
+            'P54'     =>    [ 'Desc' => $this->Translate("(P54) Low pressure switch bypass time"), 'HEXPos'=> 69, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 169, 'isVar' => true, 'Action' => false ],
 
             'P11'     =>    [ 'Desc' => $this->Translate("(P11) Water temperature probe value shown on the display"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P11", 'Pos' => 111, 'isVar' => true, 'Action' => false ],
             'P15'     =>    [ 'Desc' => $this->Translate("(P15) Type of safety flow switch for hot / solar water recirculation circuit, low pressure selection switch"), 'HEXPos'=> 2, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P15", 'Pos' => 115, 'isVar' => true, 'Action' => false ],
@@ -75,6 +75,13 @@ $DP = [
 
             'P13'     =>    [ 'Desc' => $this->Translate("(P13) Hot-water recirculation pump working mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P13", 'Pos' => 113, 'isVar' => true, 'Action' => false ],
             'P39'     =>    [ 'Desc' => $this->Translate("(P39) EEV control mode"), 'HEXPos'=> 1, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.P39", 'Pos' => 139, 'isVar' => true, 'Action' => false ],
+
+            'Timer'     =>    [ 'Desc' => $this->Translate("(Timer) enabled"), 'HEXPos'=> 52, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Timer", 'Pos' => 152, 'isVar' => true, 'Action' => false ],
+            'TStartH'     =>    [ 'Desc' => $this->Translate("(Timer) start hour"), 'HEXPos'=> 53, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.DurationH", 'Pos' => 153, 'isVar' => true, 'Action' => false ],
+            'TStartM'     =>    [ 'Desc' => $this->Translate("(Timer) start minute"), 'HEXPos'=> 54, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Duration", 'Pos' => 154, 'isVar' => true, 'Action' => false ],
+            'TStopH'     =>    [ 'Desc' => $this->Translate("(Timer) stop hour"), 'HEXPos'=> 55, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.DurationH", 'Pos' => 155, 'isVar' => true, 'Action' => false ],
+            'TStopM'     =>    [ 'Desc' => $this->Translate("(Timer) stop minute"), 'HEXPos'=> 56, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Duration", 'Pos' => 156, 'isVar' => true, 'Action' => false ],
+
 
             ]
     ];

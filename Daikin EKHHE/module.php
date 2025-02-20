@@ -50,7 +50,18 @@ declare(strict_types=1);
 				$this->SetBuffer('Buffer',"");
 			}
 
-			$this->checkDatastring($RAWDATA);	
+			// its only possible to write after D2 Message coming
+			if ((substr($RAWDATA,0,2) == 'D2') AND ($this->GetBuffer('Telegram')) )
+			{
+				$Prep = $this->GetBuffer('Telegram');
+				$TELEGRAM = pack("H*",$Prep);
+				
+				IPS_LogMessage('Daikin EKHHE Buffer:','lese daten aus Buffer');				
+				$this->SetBuffer('Telegram', "");
+			}
+
+			$this->checkDatastring($RAWDATA);
+				
 		}
 
 		private function ReadTelegram(string $HEX)
@@ -195,6 +206,7 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation("EKHHE.Temp",253,'-3', "", 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation("EKHHE.Temp",254,'-2', "", 0xFFFFFFFF);
 				IPS_SetVariableProfileAssociation("EKHHE.Temp",255,'-1', "", 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation("EKHHE.Temp",0,'%d', "", 0xFFFFFFFF);
 			}
 			if (!IPS_VariableProfileExists('EKHHE.SetTemp')) {
 				IPS_CreateVariableProfile('EKHHE.SetTemp', VARIABLETYPE_INTEGER);
@@ -234,6 +246,15 @@ declare(strict_types=1);
 				IPS_SetVariableProfileIcon('EKHHE.DurationH', 'clock');
 				IPS_SetVariableProfileValues("EKHHE.DurationH", 0, 24, 1);
 				IPS_SetVariableProfileText("EKHHE.DurationH", "", " Std.");
+			}
+			if (!IPS_VariableProfileExists('EKHHE.Timer')) {
+				IPS_CreateVariableProfile('EKHHE.Timer', VARIABLETYPE_INTEGER);
+				IPS_SetVariableProfileIcon('EKHHE.Timer', 'clock');
+				IPS_SetVariableProfileValues("EKHHE.Timer", 0, 3, 1);
+				IPS_SetVariableProfileText("EKHHE.Timer", "", "");
+				IPS_SetVariableProfileAssociation('EKHHE.Timer', 0, $this->Translate('off'), '', 0xFFFFFFFF);
+				IPS_SetVariableProfileAssociation('EKHHE.Timer', 3, $this->Translate('on'), '', 0x00FF00);
+
 			}
 			if (!IPS_VariableProfileExists('EKHHE.P11')) {
 				IPS_CreateVariableProfile('EKHHE.P11', VARIABLETYPE_INTEGER);
@@ -359,8 +380,11 @@ declare(strict_types=1);
 			}
 			if ($Prep)
 			{
+				$this->SetBuffer('Telegram',$Prep);
+				IPS_LogMessage('Daikin EKHHE Buffer:','schreibe Daten in Buffer');
 				$TELEGRAM = pack("H*",$Prep);
-				$this->SendData($TELEGRAM);
+
+				$this->SendData($TELEGRAM."\r");
 			}
 		}
 
