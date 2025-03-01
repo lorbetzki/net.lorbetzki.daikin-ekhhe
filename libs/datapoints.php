@@ -10,6 +10,8 @@ $DP = [
             'F' =>      [ 'Desc' => $this->Translate("(F) Evaporator outlet gas temperature probe"), 'HEXPos'=> 12, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
             'G' =>      [ 'Desc' => $this->Translate("(G) Compressor discharge gas temperature probe"), 'HEXPos'=> 13, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
             'H' =>      [ 'Desc' => $this->Translate("(H) Solar collector temperature probe (PT1000)"), 'HEXPos'=> 14, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "EKHHE.Temp", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
+            'I' =>      [ 'Desc' => $this->Translate("(I) EEV opening step"), 'HEXPos'=> 18, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 0, 'isVar' => true, 'Action' => false ],
+
             'DIG' =>    [ 'Desc' => $this->Translate("Dummy Digital"), 'HEXPos'=> 21, 'Type' => VARIABLETYPE_INTEGER, 'Profile' => "", 'Pos' => 0, 'isVar' => false, 'Action' => false ],
             ],
     'CC' => [

@@ -10,6 +10,7 @@
             "(G) Compressor discharge gas temperature probe": "(G) Verdichterauslass Gastemperatur-Sonde",
             "(H) Solar collector temperature probe (PT1000)": "(H) Sonnenkollektor Temperatursonde (PT1000)",
             "(P4) Antilegionella duration":"(P4) Anti-Legionellen-Dauer",
+            "(I) EEV opening step": "(I) EEV-Öffnungsschritt",
             "(P2) Electrical heater switching-on delay":"(P2) Einschaltverzögerung elektrisches Heizelement",
             "(P1) Hysteresis on lower water probe for heat-pump working":"(P1) Hysterese bei unterer Wassersonde für Wärmepumpenbetrieb",
             "(P3) Antilegionella setpoint temperature":"(P3) Anti-Legionellen-Sollwerttemperatur",
